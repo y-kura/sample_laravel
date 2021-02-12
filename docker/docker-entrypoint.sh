@@ -12,7 +12,11 @@ done
 
 # 初回のみ
 if [ ! -f .env ]; then
-  echo "APP_KEY=" > .env
+  cat <<-EOF > .env
+APP_KEY=
+APP_ENV=local
+APP_DEBUG=true
+EOF
   php artisan key:generate
   php artisan migrate:fresh --seed
 fi
@@ -21,4 +25,4 @@ fi
 php artisan migrate
 
 # CMDの実行
-exec "$@"
+if [ $# != 1 ]; then exec "$@"; fi
