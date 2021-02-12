@@ -3,18 +3,19 @@ cd /sample
 
 composer install
 
-# .envの作成
-if [ ! -f .env ]; then
-  echo "APP_KEY=" > .env
-  php artisan key:generate
-fi
-
 # DBの起動待ち
 export PGPASSWORD=postgres
 until psql -h db -U postgres -c '\l'; do
   echo "postgres waiting"
   sleep 1
 done
+
+# 初回のみ
+if [ ! -f .env ]; then
+  echo "APP_KEY=" > .env
+  php artisan key:generate
+  php artisan migrate:fresh --seed
+fi
 
 # マイグレーション
 php artisan migrate
