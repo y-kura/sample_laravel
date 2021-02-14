@@ -18,6 +18,6 @@ class UsersTableSeeder extends Seeder
             ['name' => 'guest1', 'password' => bcrypt('guest1')],
             ['name' => 'guest2', 'password' => bcrypt('guest2')],
             ['name' => 'guest3', 'password' => bcrypt('guest3')],
-        ]);        
+        ]);
     }
 }

@@ -22,6 +22,38 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        Schema::create('categories', function (Blueprint $table) {
+            $table->unsignedBigInteger('id');
+            $table->string('name');
+
+            $table->primary('id');
+        });
+
+        Schema::create('articles', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('category_id');
+            $table->string('title', 100);
+            $table->text('body');
+            $table->boolean('public_flag');
+            $table->timestampTz('posted_at');
+            $table->timestamps();   // TODO:without timezoneになるのでTzを付ける必要がありそう
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('category_id')->references('id')->on('categories');
+        });
+
+        Schema::create('comments', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('article_id');
+            $table->text('text');
+            $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('article_id')->references('id')->on('articles');
+        });
     }
 
     /**
@@ -31,6 +63,9 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('comments');
+        Schema::dropIfExists('articles');
+        Schema::dropIfExists('categories');
         Schema::dropIfExists('users');
     }
 }
