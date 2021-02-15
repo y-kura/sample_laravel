@@ -1,30 +1,50 @@
 @extends('layouts.app')
 
+@section('title', $article->title)
 @section('content')
-<h1>詳細画面</h1>
-<p><a href="{{ route('article.index')}}">一覧画面</a></p>
- 
-<table border="1">
-    <tr>
-        <th>id</th>
-        <th>title</th>
-        <th>body</th>
-        <th>category_id</th>
-        <th>public_flag</th>
-        <th>title</th>
-        <th>posted_at</th>
-        <th>created_at</th>
-        <th>updated_at</th>
-    </tr>
-    <tr>
-        <td>{{ $article->id }}</td>
-        <td>{{ $article->title }}</td>
-        <td>{{ $article->body }}</td>
-        <td>{{ $article->category_id }}</td>
-        <td>{{ $article->public_flag }}</td>
-        <td>{{ $article->posted_at }}</td>
-        <td>{{ $article->created_at }}</td>
-        <td>{{ $article->updated_at }}</td>
-    </tr>
-</table>
+<div class="container">
+    <h1>{{ $article->title }}</h1>
+    
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <td>{{ $article->id }}</td>
+        </tr>
+        <tr>
+            <th>タイトル</th>
+            <td>{{ $article->title }}</td>
+        </tr>
+        <tr>
+            <th>本文</th>
+            <td>{{ $article->body }}</td>
+        </tr>
+        <tr>
+            <th>カテゴリー</th>
+            <td>{{ $category_names[$article->category_id] ?? '' }}</td>
+        </tr>
+        <tr>
+            <th>公開設定</th>
+            <td>{{ $article->getPlublicFlagDisplay() }}</td>
+        </tr>
+        <tr>
+            <th>投稿日時</th>
+            <td>{{ $article->posted_at }}</td>
+        </tr>
+        <tr>
+            <th>作成日時</th>
+            <td>{{ $article->created_at }}</td>
+        </tr>
+        <tr>
+            <th>更新日時</th>
+            <td>{{ $article->updated_at }}</td>
+        </tr>
+    </table>
+
+    <a href="{{ route('article.edit',$article->id)}}">編集</a>
+    <form action="{{ route('article.destroy', $article->id)}}" method="POST">
+        @csrf
+        @method('DELETE')
+        <input type="submit" name="" value="削除">
+    </form>
+</div>
 @endsection

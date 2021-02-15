@@ -33,11 +33,11 @@ class CreateUsersTable extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('category_id');
             $table->string('title', 100);
             $table->text('body');
+            $table->unsignedBigInteger('category_id');
+            $table->timestampTz('posted_at')->nullable();
             $table->boolean('public_flag');
-            $table->timestampTz('posted_at');
             $table->timestamps();   // TODO:without timezoneになるのでTzを付ける必要がありそう
 
             $table->foreign('user_id')->references('id')->on('users');

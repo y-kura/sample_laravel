@@ -11,11 +11,19 @@ class Article extends Model
 
     protected $fillable = [
         'user_id',
-        'category_id',
         'title',
         'body',
-        'public_flag',
+        'category_id',
         'posted_at',
+        'public_flag',
     ];
 
+    private $publicFlagChoices = [
+        0 => '非公開',
+        1 => '公開',
+    ];
+
+    public function getPlublicFlagDisplay() {
+        return $this->publicFlagChoices[$this->public_flag] ?? '';
+    }
 }

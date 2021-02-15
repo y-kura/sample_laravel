@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Article;
+use App\Models\Category;
+use App\Http\Requests\ArticleRequest;
 use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
@@ -26,7 +28,8 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::all();
-        return view('article.index', compact('articles'));
+        $category_names = Category::getNames();
+        return view('article.index', compact('articles', 'category_names'));
     }
 
     /**
@@ -36,7 +39,8 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('article.create');
+        $category_names = Category::getNames();
+        return view('article.create', compact('category_names'));
     }
 
     /**
@@ -45,10 +49,11 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
         $article = $request->all();
         $article['user_id'] = Auth::id();
+        $article['public_flag'] = (isset($article['public_flag']) && $article['public_flag']);
         Article::create($article);
         return redirect()->route('article.index')->with('success', '新規登録完了しました');
     }
@@ -62,7 +67,8 @@ class ArticleController extends Controller
     public function show($id)
     {
         $article = Article::find($id);
-        return view('article.show', compact('article'));
+        $category_names = Category::getNames();
+        return view('article.show', compact('article', 'category_names'));
     }
 
     /**
