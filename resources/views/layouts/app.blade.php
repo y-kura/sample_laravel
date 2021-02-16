@@ -28,6 +28,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style type="text/css">
+    .container { max-width: 750px; }
+    </style>
 </head>
 <body>
     <header>
@@ -37,8 +40,8 @@
                 @auth
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
-                        <li class="nav-item @if(Request::is('/') || Request::is('article')) active @endif"><a class="nav-link" href="{{ route('article.index') }}"><i class="bi bi-list align-text-bottom"></i> 記事一覧</a></li>
-                        <li class="nav-item @if(Request::is('article/create')) active @endif"><a class="nav-link" href="{{ route('article.create') }}"><i class="bi bi-pencil-square align-text-bottom"></i> 記事作成</a></li>
+                        <li class="nav-item @if(Request::is('/') || Request::is('article')) active @endif"><a class="nav-link" href="{{ route('article.index') }}"><i class="bi bi-list align-text-bottom"></i> 自分の記事</a></li>
+                        <li class="nav-item @if(Request::is('article/create')) active @endif"><a class="nav-link" href="{{ route('article.create') }}"><i class="bi bi-pencil-square align-text-bottom"></i> 記事を投稿</a></li>
                     </ul>
                 </div>
                 @endauth
@@ -62,6 +65,7 @@
                 </ul>
             </div>
         </nav>
+        <br>
     </header>
     <main class="py-3">
         @yield('content')

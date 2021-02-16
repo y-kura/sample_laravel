@@ -17,7 +17,7 @@ class ArticleController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['index', 'show']);
     }
 
     /**
@@ -55,7 +55,7 @@ class ArticleController extends Controller
         $article['user_id'] = Auth::id();
         $article['public_flag'] = (isset($article['public_flag']) && $article['public_flag']);
         Article::create($article);
-        return redirect()->route('article.index')->with('success', '新規登録完了しました');
+        return redirect()->route('article.index')->with('success', '記事を投稿しました。');
     }
 
     /**
@@ -67,6 +67,10 @@ class ArticleController extends Controller
     public function show($id)
     {
         $article = Article::find($id);
+        if (!$article) {
+            abort(404);
+        }
+
         $category_names = Category::getNames();
         return view('article.show', compact('article', 'category_names'));
     }
@@ -80,8 +84,15 @@ class ArticleController extends Controller
     public function edit($id)
     {
         $article = Article::find($id);
-        print($article);
-        return view('article.edit', compact('article'));
+        if (!$article) {
+            abort(404);
+        }
+        if ($article->user_id != Auth::id()) {
+            abort(403);
+        }
+
+        $category_names = Category::getNames();
+        return view('article.edit', compact('article', 'category_names'));
     }
 
     /**
@@ -93,15 +104,23 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $article = Article::find($id);
+        if (!$article) {
+            abort(404);
+        }
+        if ($article->user_id != Auth::id()) {
+            abort(403);
+        }
+
         $update = [
-            'category_id' => $request->category_id,
             'title' => $request->title,
             'body' => $request->body,
-            'public_flag' => $request->public_flag,
+            'category_id' => $request->category_id,
             'posted_at' => $request->posted_at,
+            'public_flag' => $request->public_flag,
         ];
         Article::where('id', $id)->update($update);
-        return back()->with('success', '編集完了しました');
+        return redirect()->route('article.show', ['article' => $id])->with('success', '記事を修正しました。');
     }
 
     /**
@@ -112,7 +131,15 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
+        $article = Article::find($id);
+        if (!$article) {
+            abort(404);
+        }
+        if ($article->user_id != Auth::id()) {
+            abort(403);
+        }
+
         Article::where('id', $id)->delete();
-        return redirect()->route('article.index')->with('success', '削除完了しました');
+        return redirect()->route('article.index')->with('success', "記事「{$article->title}」を削除しました。");
     }
 }

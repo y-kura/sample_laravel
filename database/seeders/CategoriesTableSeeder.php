@@ -17,7 +17,7 @@ class CategoriesTableSeeder extends Seeder
         DB::table('categories')->insert([
             ['id' => 1, 'name' => '一般'],
             ['id' => 2, 'name' => '政治・経済'],
-            ['id' => 3, 'name' => 'エンタメ・スポーツ'],
+            ['id' => 3, 'name' => 'ｴﾝﾀﾒ・ｽﾎﾟｰﾂ'],
             ['id' => 4, 'name' => 'IT・科学'],
             ['id' => 9, 'name' => 'その他'],
         ]);
