@@ -37,7 +37,7 @@
             </div>
             <div class="form-group col-md-5">
                 <label for="posted_at">投稿日時</label>
-                <input id="posted_at" name="posted_at" type="datetime-local" class="form-control" value="{{ $article->posted_at }}" placeholder="年/月/日 [時:分]">
+                <input id="posted_at" name="posted_at" type="datetime-local" class="form-control" value="{{ date('Y-m-d\TH:i:s', strtotime($article->posted_at)) }}" placeholder="年/月/日 [時:分]">
             </div>
         </div>
         <div class="form-group">
