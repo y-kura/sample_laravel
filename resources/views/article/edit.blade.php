@@ -22,7 +22,7 @@
         </div>
         <div class="form-group">
             <label for="body">本文 <small><span class="badge badge-danger">必須</span></small></label>
-            <textarea class="form-control" id="body" name="body" rows="7" maxlength="200" required>{{ $article->body }}</textarea>
+            <textarea class="form-control" id="body" name="body" rows="10" maxlength="200" required>{{ $article->body }}</textarea>
             <small class="form-text text-muted">※ 最大200文字</small>
         </div>
         <div class="form-row">

@@ -26,4 +26,9 @@ class Article extends Model
     public function getPlublicFlagDisplay() {
         return $this->publicFlagChoices[$this->public_flag] ?? '';
     }
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }    
 }

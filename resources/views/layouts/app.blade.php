@@ -30,6 +30,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style type="text/css">
     .container { max-width: 750px; }
+    pre { white-space: pre-wrap; }
     </style>
 </head>
 <body>
@@ -40,7 +41,7 @@
                 @auth
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
-                        <li class="nav-item @if(Request::is('/') || Request::is('article')) active @endif"><a class="nav-link" href="{{ route('article.index') }}"><i class="bi bi-list align-text-bottom"></i> 自分の記事</a></li>
+                        <li class="nav-item @if(request('user_id') == Auth::id()) active @endif"><a class="nav-link" href="{{ route('article.index', ['user_id' => Auth::id()]) }}"><i class="bi bi-list align-text-bottom"></i> 自分の記事</a></li>
                         <li class="nav-item @if(Request::is('article/create')) active @endif"><a class="nav-link" href="{{ route('article.create') }}"><i class="bi bi-pencil-square align-text-bottom"></i> 記事を投稿</a></li>
                     </ul>
                 </div>

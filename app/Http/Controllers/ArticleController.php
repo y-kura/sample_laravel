@@ -27,7 +27,24 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::all();
+        $user_id = request('user_id');
+        $category_id = request('category_id');
+
+        //$articles = Article::all();
+        $query = Article::where(function($query) {
+            $query->where('public_flag', true);
+            if (Auth::check()) {
+                $query->orWhere('user_id', Auth::id());
+            }
+        });
+        if ($user_id) {
+            $query->where('user_id', $user_id);
+        }
+        if ($category_id) {
+            $query->where('category_id', $category_id);
+        }
+        $articles = $query->orderBy('id', 'desc')->paginate(10);
+        //$articles = Article::paginate(3);
         $category_names = Category::getNames();
         return view('article.index', compact('articles', 'category_names'));
     }
@@ -120,7 +137,7 @@ class ArticleController extends Controller
             'public_flag' => $request->public_flag,
         ];
         Article::where('id', $id)->update($update);
-        return redirect()->route('article.show', ['article' => $id])->with('success', '記事を修正しました。');
+        return redirect()->route('article.show', $id)->with('success', '記事を修正しました。');
     }
 
     /**
