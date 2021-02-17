@@ -23,5 +23,5 @@ RUN apt-get -y clean
 
 COPY php.ini /usr/local/etc/php/php.ini
 
-ENTRYPOINT ["/bin/bash", "docker/docker-entrypoint.sh"]
+ENTRYPOINT ["/bin/bash", "infra/docker-entrypoint.sh"]
 CMD ["php", "artisan", "serve", "--host", "0.0.0.0", "--port", "80"]
