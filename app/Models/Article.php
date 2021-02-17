@@ -23,6 +23,12 @@ class Article extends Model
         1 => '公開',
     ];
 
+    protected $dates = [
+        'posted_at',
+        'created_at',
+        'updated_at',
+    ];
+
     public function getPlublicFlagDisplay() {
         return $this->publicFlagChoices[$this->public_flag] ?? '';
     }

@@ -24,7 +24,7 @@
         </div>
         <!-- 投稿日時 -->
         <div class="col text-right">
-            <span class="text-muted">{{ $article->posted_at }}</span>
+            <span class="text-muted">{{ ($article->posted_at) ? $article->posted_at->format('Y-m-d H:i') : '' }}</span>
         </div>
     </div>
 

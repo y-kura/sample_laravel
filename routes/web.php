@@ -15,11 +15,6 @@ use App\Http\Controllers\ArticleController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 Route::get('/', [App\Http\Controllers\ArticleController::class, 'index'])->name('index');
 Route::resource('article', ArticleController::class);
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

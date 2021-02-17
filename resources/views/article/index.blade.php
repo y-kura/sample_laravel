@@ -40,7 +40,7 @@
                 </div>
                 <div class="col text-right">
                     <!-- 投稿日時 -->
-                    <small class="text-muted">{{ $article->posted_at }}</small>
+                    <small class="text-muted">{{ ($article->posted_at) ? $article->posted_at->format('Y-m-d H:i') : '' }}</small>
                 </div>
             </div>
             <!-- タイトル -->
