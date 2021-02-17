@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class ArticleController extends Controller
 {
@@ -30,7 +31,6 @@ class ArticleController extends Controller
         $user_id = request('user_id');
         $category_id = request('category_id');
 
-        //$articles = Article::all();
         $query = Article::where(function($query) {
             $query->where('public_flag', true);
             if (Auth::check()) {
@@ -44,8 +44,9 @@ class ArticleController extends Controller
             $query->where('category_id', $category_id);
         }
         $articles = $query->orderBy('id', 'desc')->paginate(10);
-        //$articles = Article::paginate(3);
+
         $category_names = Category::getNames();
+
         return view('article.index', compact('articles', 'category_names'));
     }
 
@@ -89,7 +90,8 @@ class ArticleController extends Controller
         }
 
         $category_names = Category::getNames();
-        return view('article.show', compact('article', 'category_names'));
+        $comments = Comment::where('article_id', $id)->orderBy('id', 'desc')->limit(100)->get();
+        return view('article.show', compact('article', 'category_names', 'comments'));
     }
 
     /**

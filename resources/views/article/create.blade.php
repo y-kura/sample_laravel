@@ -7,9 +7,7 @@
 	@if ($errors->any())
     <div class="alert alert-danger">
         {{ $errors->first() }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
     </div>
 	@endif
 
@@ -17,13 +15,13 @@
         @csrf
         <div class="form-group">
             <label for="title">タイトル <small><span class="badge badge-danger">必須</span></small></label>
-            <input class="form-control" id="title" name="title" type="text" value="{{ old('title') }}" autocomplete="off" maxlength="50" required>
-            <small class="form-text text-muted">※ 最大50文字</small>
+            <input class="form-control" id="title" name="title" type="text" value="{{ old('title') }}" autocomplete="off" maxlength="100" required>
+            <small class="form-text text-muted">※ 最大100文字</small>
         </div>
         <div class="form-group">
             <label for="body">本文 <small><span class="badge badge-danger">必須</span></small></label>
-            <textarea class="form-control" id="body" name="body" rows="10" maxlength="200" required>{{ old('body') }}</textarea>
-            <small class="form-text text-muted">※ 最大200文字</small>
+            <textarea class="form-control" id="body" name="body" rows="10" maxlength="1000" required>{{ old('body') }}</textarea>
+            <small class="form-text text-muted">※ 最大1000文字</small>
         </div>
         <div class="form-row">
             <div class="form-group col-md-7">

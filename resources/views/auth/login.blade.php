@@ -10,9 +10,7 @@
             @if ($errors->any())
             <div class="alert alert-danger">
                 ユーザー名またはパスワードに誤りがあります。
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
             </div>
             @endif
 

@@ -8,10 +8,8 @@
         <div class="card-body">
             @if ($errors->any())
             <div class="alert alert-danger">
-            {{ $errors->first() }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                {{ $errors->first() }}
+                <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
             </div>
             @endif
 

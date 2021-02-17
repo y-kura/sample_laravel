@@ -6,9 +6,7 @@
 	@if (session('success'))
     <div class="alert alert-success">
         {{ session('success') }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
     </div>
 	@endif
 
@@ -49,6 +47,11 @@
             <p class="card-text">{{ mb_strimwidth($article->body, 0, 160, '...') }}</p>
             <!-- ユーザー -->
             <i class="bi bi-person-fill"></i> {{ $article->user->name }}
+            <!-- コメント数 -->
+            <?php $count = $article->comments->count() ?>
+            @if ($count)
+            <i class="bi bi-chat-right-dots ml-2"></i> {{ $count }}件
+            @endif
         </div>
     </div>
     @endforeach

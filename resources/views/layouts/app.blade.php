@@ -53,7 +53,7 @@
                         <a class="nav-item nav-link dropdown-toggle" href="#" id="loginUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="bi bi-person-fill"></i> {{ Auth::user()->name }}
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="loginUser">
+                        <div class="dropdown-menu">
                             <form id="logoutForm" action="{{ route('logout') }}" method="POST">
                                 @csrf
                                 <a class="dropdown-item" href="javascript:logoutForm.submit()">ログアウト</a>

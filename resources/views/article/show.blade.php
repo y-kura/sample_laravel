@@ -7,9 +7,13 @@
     @if (session('success'))
     <div class="alert alert-success">
         {{ session('success') }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+    </div>
+	@endif
+	@if ($errors->any())
+    <div class="alert alert-danger">
+        {{ $errors->first() }}
+        <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
     </div>
 	@endif
 
@@ -50,7 +54,7 @@
     </div>
 
     <!-- 削除のモーダル -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -72,9 +76,33 @@
     @endauth
 
     <!-- コメント -->
-    <h6 class="text-center"><i class="bi bi-chat-right-dots"></i> コメント</h6>
-    （実装予定）<br>    
-
-
+    <hr>
+    <h6><i class="bi bi-chat-right-dots"></i> コメント <small class="text-muted">※ 最大100文字</small></h6>
+    <form class="mb-3" action="{{ route('comment.store')}}" method="POST">
+        @csrf
+        <input type="hidden" name="article_id" value="{{ $article->id }}">
+        <div class="form-group">
+            <input class="form-control form-control-sm" id="text" name="text" type="text" value="{{ old('text') }}" autocomplete="off" maxlength="100" required>
+        </div>
+        <div class="text-right">
+            <button type="submit" class="btn btn-info btn-sm">　コメント　</button>    
+        </div>
+    </form>
+    @foreach ($comments as $comment)
+    <h6>
+        <i class="bi bi-person-fill"></i> {{ $comment->user->name }}
+        <small class="text-muted">{{ $comment->created_at->format('Y-m-d H:i') }}</small>
+        @auth
+        @if ($comment->user_id == Auth::user()->id)
+        <form action="{{ route('comment.destroy', $comment->id)}}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="close" onclick="return confirm('コメントを削除します。よろしいですか？');""><span>&times;</span></button>
+        </form>
+        @endif
+        @endauth
+    </h6>
+    <p>{{ $comment->text }}</p>
+    @endforeach
 </div>
 @endsection

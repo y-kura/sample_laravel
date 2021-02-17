@@ -49,7 +49,7 @@ class CreateUsersTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('article_id');
             $table->text('text');
-            $table->timestamps();
+            $table->timestamp('created_at')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('article_id')->references('id')->on('articles');

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,4 +18,5 @@ use App\Http\Controllers\ArticleController;
 
 Route::get('/', [App\Http\Controllers\ArticleController::class, 'index'])->name('index');
 Route::resource('article', ArticleController::class);
+Route::resource('comment', CommentController::class, ['only' => ['store', 'destroy']]);
 Auth::routes();
