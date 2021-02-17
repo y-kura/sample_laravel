@@ -42,5 +42,11 @@ class LoginController extends Controller
     public function username()
     {
         return 'name';
-    }    
+    }
+
+    // ログイン後のリダイレクト先
+    public function redirectPath()
+    {
+        return route('index');
+    }
 }

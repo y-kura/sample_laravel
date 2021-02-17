@@ -35,12 +35,6 @@ class ArticleRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.required' => 'タイトルを入力してください。',
-            'title.max' => 'タイトルの文字数を50文字以内にしてください。',
-            'body.required' => '本文を入力してください。',
-            'body.max' => '本文の文字数を200文字以内にしてください。',
-            'category_id.required' => 'カテゴリーを選択してください。',
-            'category_id.exists' => 'カテゴリーのIDが間違っています。',
             'posted_at.date' => '投稿日時の形式に誤りがあります。',
         ];
     }    

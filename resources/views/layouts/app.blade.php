@@ -31,6 +31,7 @@
     <style type="text/css">
     .container { max-width: 750px; }
     pre { white-space: pre-wrap; }
+    input.form-control::placeholder { color: #ccc; }
     </style>
 </head>
 <body>

@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('title', '記事の投稿')
 @section('content')
 <div class="container">
 

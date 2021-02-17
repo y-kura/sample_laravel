@@ -13,11 +13,11 @@
 	@endif
 
     <!-- カテゴリーのタブ -->
+    <?php $query = request('user_id') ? ['user_id' => request('user_id')] : [] ?>
     <ul class="nav nav-tabs mb-3">
         <li class="nav-item">
-            <a class="nav-link @if (!request('category_id')) active @endif" href="{{ route('article.index') }}">ALL</a>
+            <a class="nav-link @if (!request('category_id')) active @endif" href="{{ route('article.index', $query) }}">ALL</a>
         </li>
-        <?php $query = request('user_id') ? ['user_id' => request('user_id')] : [] ?>
         @foreach ($category_names as $category_id => $category_name)
         <li class="nav-item">
             <a class="nav-link @if ($category_id == request('category_id')) active @endif" href="{{ route('article.index', $query + ['category_id' => $category_id]) }}">{{ $category_name }}</a>
