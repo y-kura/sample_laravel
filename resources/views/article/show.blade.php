@@ -77,6 +77,7 @@
 
     <!-- コメント -->
     <hr>
+    @auth
     <h6><i class="bi bi-chat-right-dots"></i> コメント <small class="text-muted">※ 最大100文字</small></h6>
     <form class="mb-3" action="{{ route('comment.store')}}" method="POST">
         @csrf
@@ -88,6 +89,10 @@
             <button type="submit" class="btn btn-info btn-sm">　コメント　</button>    
         </div>
     </form>
+    @else
+    <h6><i class="bi bi-chat-right-dots"></i> コメント</h6>
+    @endauth
+
     @foreach ($comments as $comment)
     <h6>
         <i class="bi bi-person-fill"></i> {{ $comment->user->name }}
