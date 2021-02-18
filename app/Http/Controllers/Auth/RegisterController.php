@@ -73,10 +73,4 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
-
-    // 新規作成後のリダイレクト先
-    public function redirectPath()
-    {
-        return route('index');
-    }
 }

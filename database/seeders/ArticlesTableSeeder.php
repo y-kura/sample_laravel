@@ -19,7 +19,7 @@ class ArticlesTableSeeder extends Seeder
         $faker = Faker::create('ja_JP');
 
         $now = new DateTime('-5 year');
-        foreach (range(1, 100) as $id) {
+        foreach (range(1, 200) as $id) {
             $now->modify('+' . rand(1, 60 * 60 * 24 * 7) . ' second');
             DB::table('articles')->insert([
                 'id' => $id,

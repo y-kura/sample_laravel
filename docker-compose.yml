@@ -11,6 +11,8 @@ services:
     restart: always
     depends_on:
       - db
+    environment:
+      XDEBUG_MODE: "off"
   db:
     image: postgres
     container_name: db

@@ -46,5 +46,23 @@
             </form>
         </div>
     </div>
+
+    <hr>
+    <div class="text-muted small">
+    ※<br>
+    新規登録が面倒な方は、テスト用に用意してある、<br>
+    下記のいずれかのアカウントでログインしてください。
+    <table class="table table-sm w-auto">
+        <thead>
+            <tr><th>ユーザー名</th><th>パスワード</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>guest1</td><td>guest1</td></tr>
+            <tr><td>guest2</td><td>guest2</td></tr>
+            <tr><td>guest3</td><td>guest3</td></tr>
+        </tbody>
+    </table>
+    </div>
+
 </div>
 @endsection
