@@ -9,6 +9,11 @@ class Category extends Model
 {
     use HasFactory;
 
+    /**
+     * カテゴリー名のリストの取得
+     *
+     * @return array
+     */
     public static function getNames() {
         return self::all()->pluck('name', 'id')->toArray();
     }

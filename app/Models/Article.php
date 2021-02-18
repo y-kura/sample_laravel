@@ -29,15 +29,30 @@ class Article extends Model
         'updated_at',
     ];
 
+    /**
+     * 公開フラグの表示名の取得
+     *
+     * @return string
+     */
     public function getPlublicFlagDisplay() {
         return $this->publicFlagChoices[$this->public_flag] ?? '';
     }
 
+    /**
+     * ユーザーの取得
+     *
+     * @return App\Models\User
+     */
     public function user()
     {
         return $this->belongsTo('App\Models\User');
     }
 
+    /**
+     * コメントのリストの取得
+     *
+     * @return array
+     */
     public function comments()
     {
         return $this->hasMany('App\Models\Comment');

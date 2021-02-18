@@ -1,6 +1,7 @@
 @if ($paginator->hasPages())
     <nav>
         <ul class="pagination justify-content-center"">
+            <!-- 前のページ -->
             @if ($paginator->onFirstPage())
                 <li class="page-item disabled"><span class="page-link">&lsaquo;</span></li>
             @else
@@ -9,6 +10,7 @@
                 </li>
             @endif
 
+            <!-- ページ番号 -->
             @foreach ($elements as $element)
                 @if (is_string($element))
                     <li class="page-item disabled"><span class="page-link">{{ $element }}</span></li>
@@ -25,6 +27,7 @@
                 @endif
             @endforeach
 
+            <!-- 次のページ -->
             @if ($paginator->hasMorePages())
                 <li class="page-item">
                     <a class="page-link" href="{{ $paginator->nextPageUrl() }}" rel="next"">&rsaquo;</a>

@@ -6,6 +6,7 @@
     <div class="card">
         <h5 class="card-header">新規登録</h5>
         <div class="card-body">
+            <!-- メッセージ -->
             @if ($errors->any())
             <div class="alert alert-danger">
                 {{ $errors->first() }}

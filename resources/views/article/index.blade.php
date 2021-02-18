@@ -61,6 +61,5 @@
 
     <!-- ページャー -->
     {{ $articles->appends(request()->query())->links() }}
-
 </div>
 @endsection

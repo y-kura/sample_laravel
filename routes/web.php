@@ -16,7 +16,14 @@ use App\Http\Controllers\CommentController;
 |
 */
 
+// Home
 Route::get('/', [App\Http\Controllers\ArticleController::class, 'index'])->name('index');
+
+// 記事
 Route::resource('article', ArticleController::class);
+
+// コメント
 Route::resource('comment', CommentController::class, ['only' => ['store', 'destroy']]);
+
+// ユーザー
 Auth::routes();

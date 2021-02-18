@@ -47,6 +47,7 @@
         </div>
     </div>
 
+    <!-- テスト用ユーザーの一覧 -->
     <hr>
     <div class="text-muted small">
     ※<br>
@@ -63,6 +64,5 @@
         </tbody>
     </table>
     </div>
-
 </div>
 @endsection

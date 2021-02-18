@@ -32,6 +32,11 @@ class ArticleRequest extends FormRequest
         ];
     }
 
+    /**
+     * バリデーションのメッセージ
+     *
+     * @return array
+     */
     public function messages()
     {
         return [

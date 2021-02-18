@@ -21,6 +21,11 @@ class Comment extends Model
         'created_at',
     ];
 
+    /**
+     * ユーザーの取得
+     *
+     * @return App\Models\User
+     */
     public function user()
     {
         return $this->belongsTo('App\Models\User');
