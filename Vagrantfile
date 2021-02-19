@@ -33,5 +33,5 @@ Vagrant.configure("2") do |config|
 
   # プロビジョン
   config.vm.provision :docker
-  config.vm.provision :docker_compose, yml: "/vagrant/docker-compose.yml"
+  config.vm.provision :docker_compose, run: "always", yml: "/vagrant/docker-compose.yml"
 end
