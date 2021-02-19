@@ -4,6 +4,10 @@
 Laravelを学習するために作成したサンプルのプログラムです。  
 記事の作成・参照・更新・削除をするだけの単純なサイトです。
 
+## ドキュメント
+- 画面遷移図 : doc/screen_transition_diagram.drawio
+- ER図 : doc/er_diagram.drawio
+
 ## 環境
 Herokuで公開しています。  
 https://yk-sample-laravel.herokuapp.com/
