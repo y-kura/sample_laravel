@@ -39,3 +39,12 @@ http://localhost/
 ```
 > vagrant halt
 ```
+
+### DBへの接続
+ローカルからDB(PostgreSQL)に接続する場合は、下記の値を設定してください。
+
+- サーバー名：localhost
+- ポート番号：5432
+- データベース名：sample
+- ユーザーID：postgres
+- パスワード：postgres
